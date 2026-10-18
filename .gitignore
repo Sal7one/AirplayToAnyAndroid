@@ -1,0 +1,46 @@
+*.iml
+.gradle
+.kotlin
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+**/build/
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+/.idea/
+/.codex/
+/.agents/
+
+# Private protocol captures may contain media and session material.
+/docs/spike_logs/private/
+
+# Signing material and generated release artifacts must never enter Git.
+*.keystore
+*.jks
+*.p12
+*.pfx
+*.pem
+*.key
+*signing.properties
+secrets.properties
+store-password
+.env
+.env.*
+!.env.example
+/releases/
+*.pcap
+*.pcapng
+*.log
+__pycache__/
+*.pyc
+
+# Downloaded books and temporary download jobs stay local, not in source history.
+/lan-anyflip/downloads/

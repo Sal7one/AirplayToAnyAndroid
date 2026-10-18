@@ -1,0 +1,8 @@
+FossMirrorTV includes the PlayFair implementation under GNU GPL version 3.
+The accompanying playfair-GPLv3.md contains the full license text.
+
+The seven vendored implementation files match UxPlay commit
+462153392f2e30937424922039ff9f0cda5e7b1a, lib/playfair/, byte for byte.
+Distributors must provide the complete corresponding FossMirrorTV source and
+build scripts alongside the APK, not only a link to the upstream component.
+See docs/protocol/crypto-source.md and docs/protocol/reference-integration.md.

@@ -1,0 +1,31 @@
+FossMirrorTV component notices
+
+FossMirrorTV is distributed as a combined work under GPL-3.0-only.
+Files carrying separate component licenses retain those terms. The full GPLv3
+text is included as playfair-GPLv3.md. Provide complete corresponding source
+and build scripts with APK downloads, not just upstream component sources.
+
+PlayFair: GPLv3; source matches UxPlay commit
+462153392f2e30937424922039ff9f0cda5e7b1a, lib/playfair/.
+Full license: playfair-GPLv3.md. Additional source note: playfair-notice.txt.
+
+Apple ALAC: Copyright (c) 2011 Apple Inc. Apache License 2.0.
+Full license: apple-alac.txt. Source and changes: apple-alac-notice.txt.
+
+Bouncy Castle 1.86: Copyright (c) 2000-2026 The Legion of the Bouncy Castle Inc.
+MIT license: bouncycastle.txt.
+
+SLF4J API 2.0.7: Copyright (c) 2004-2023 QOS.ch.
+MIT license: slf4j.txt.
+
+Lucide icons: ISC license and copyright notice: lucide.txt.
+
+JmDNS 3.5.10 (https://github.com/jmdns/jmdns), AndroidX, Android Material,
+Kotlin, kotlinx.coroutines, JetBrains annotations, Google Guava listenablefuture
+and Error Prone annotations: Apache License 2.0. The full Apache 2.0 license
+is included in apple-alac.txt; existing source/package notices are retained.
+Exact resolved module versions are in docs/dependency-inventory.json in the
+corresponding source. This inventory is not a grant to relicense third-party code.
+
+AirPlay, Apple, macOS and Android are their respective owners' marks.
+FossMirrorTV is not affiliated with or endorsed by Apple or Google.

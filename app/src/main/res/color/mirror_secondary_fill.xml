@@ -1,0 +1,4 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_focused="true" android:color="@color/mirror_accent" />
+    <item android:color="@color/mirror_surface" />
+</selector>

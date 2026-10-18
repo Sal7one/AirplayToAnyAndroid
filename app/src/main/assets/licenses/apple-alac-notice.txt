@@ -1,0 +1,12 @@
+Apple Lossless Audio Codec (ALAC)
+Copyright (c) 2011 Apple Inc. All rights reserved.
+Licensed under the Apache License, Version 2.0; see apple-alac.txt.
+
+Source: macosforge/alac, vendored by prat3ik/iMirror at commit
+9b52ce6d8bedb80ee557a5114d3cdbee4ab84f00, app/src/main/cpp/alac.
+
+FossMirrorTV modifications (2026-10-16): checked bitstream reads and bounds,
+configuration/packet validation, defined predictor arithmetic, explicit PCM16
+little-endian output, per-instance JNI ownership and synchronized lifecycle.
+Full provenance and modification details: app/src/main/cpp/audio_alac/README.md
+in the FossMirrorTV source distribution.

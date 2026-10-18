@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="mirror_background">#101313</color>
+    <color name="mirror_surface">#202525</color>
+    <color name="mirror_overlay">#F0101313</color>
+    <color name="mirror_text">#F5F7F3</color>
+    <color name="mirror_muted">#B6C2BF</color>
+    <color name="mirror_accent">#DFFF58</color>
+    <color name="mirror_focus">#F0FFAF</color>
+    <color name="mirror_cyan">#A5E5EC</color>
+    <color name="mirror_error">#FF9B85</color>
+    <color name="mirror_border">#52615E</color>
+    <color name="mirror_disabled">#707E78</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>

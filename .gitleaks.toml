@@ -1,0 +1,4 @@
+title = "FossMirrorTV secret scanning"
+
+[extend]
+useDefault = true

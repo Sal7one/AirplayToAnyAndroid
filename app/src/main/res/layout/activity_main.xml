@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:layoutDirection="ltr"
+    android:background="@color/black">
+
+    <SurfaceView android:id="@+id/fullscreen_surface"
+        android:layout_width="match_parent" android:layout_height="match_parent"
+        android:focusable="true" android:focusableInTouchMode="true"
+        android:contentDescription="@string/receiver_show_controls" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/receiver_panel"
+        android:layout_width="match_parent" android:layout_height="match_parent"
+        android:background="@color/mirror_background">
+
+        <ImageView android:layout_width="0dp" android:layout_height="0dp"
+            android:src="@drawable/receiver_scene" android:scaleType="centerCrop"
+            android:importantForAccessibility="no"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline android:id="@+id/content_edge"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:orientation="vertical" app:layout_constraintGuide_percent="0.53" />
+
+        <LinearLayout android:id="@+id/receiver_header"
+            android:layout_width="0dp" android:layout_height="@dimen/receiver_header_size"
+            android:layout_marginHorizontal="32dp" android:layout_marginTop="@dimen/receiver_header_top"
+            android:gravity="center_vertical" android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <ImageView android:layout_width="@dimen/receiver_header_size" android:layout_height="@dimen/receiver_header_size"
+                android:src="@drawable/foss_mirror_mark" android:importantForAccessibility="no" />
+            <com.google.android.material.button.MaterialButton android:id="@+id/receiver_speed"
+                style="@style/Mirror.Icon" android:layout_width="112dp" android:layout_height="match_parent"
+                android:layout_marginStart="12dp" android:minHeight="0dp"
+                android:paddingHorizontal="8dp" android:text="@string/receiver_playback_balanced"
+                android:textColor="@color/mirror_secondary_content"
+                android:maxLines="1" android:contentDescription="@string/receiver_playback_mode"
+                android:tooltipText="@string/receiver_playback_mode"
+                app:autoSizeTextType="uniform" app:autoSizeMinTextSize="12sp" app:autoSizeMaxTextSize="16sp"
+                android:nextFocusDown="@id/receiver_restart" />
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:layout_marginStart="16dp"
+                android:text="@string/receiver_airplay" android:textColor="@color/mirror_muted"
+                android:textSize="13sp" android:letterSpacing="0" android:includeFontPadding="false" />
+            <View android:id="@+id/receiver_status_dot" android:layout_width="8dp" android:layout_height="8dp"
+                android:background="@drawable/receiver_status_dot" />
+            <TextView android:id="@+id/receiver_state" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_marginStart="10dp" android:text="@string/receiver_state_starting"
+                android:textColor="@color/mirror_text" android:textSize="14sp" android:includeFontPadding="false" />
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/receiver_content"
+            android:layout_width="0dp" android:layout_height="0dp"
+            android:layout_marginStart="36dp" android:layout_marginEnd="16dp"
+            android:layout_marginVertical="@dimen/receiver_content_gap"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toStartOf="@id/content_edge"
+            app:layout_constraintTop_toBottomOf="@id/receiver_header" app:layout_constraintBottom_toTopOf="@id/receiver_footer">
+            <ScrollView android:id="@+id/receiver_details"
+                android:layout_width="0dp" android:layout_height="wrap_content"
+                android:scrollbars="vertical" android:nextFocusDown="@id/receiver_stop"
+                app:layout_constrainedHeight="true"
+                app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toTopOf="@id/receiver_actions"
+                app:layout_constraintVertical_chainStyle="packed" app:layout_constraintVertical_bias="0.5">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:gravity="center_vertical">
+                <TextView android:id="@+id/receiver_name" android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="@string/app_name" android:textColor="@color/mirror_text"
+                    android:fontFamily="sans-serif-medium" android:textSize="48sp" android:includeFontPadding="false"
+                    android:maxLines="1" android:autoSizeTextType="uniform"
+                    android:autoSizeMinTextSize="28sp" android:autoSizeMaxTextSize="48sp" android:autoSizeStepGranularity="1sp" />
+                <TextView android:id="@+id/receiver_device_label" android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp" android:textColor="@color/mirror_muted"
+                    android:textSize="16sp" android:includeFontPadding="false" android:maxLines="1"
+                    android:autoSizeTextType="uniform" android:autoSizeMinTextSize="12sp" android:autoSizeMaxTextSize="16sp" />
+                <TextView android:id="@+id/receiver_status" android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/receiver_status_gap" android:text="@string/receiver_starting"
+                    android:textColor="@color/mirror_cyan" android:textSize="20sp" android:includeFontPadding="false" />
+            </LinearLayout>
+            </ScrollView>
+                <androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/receiver_actions"
+                    android:layout_width="0dp" android:layout_height="52dp"
+                    android:layout_marginTop="@dimen/receiver_action_gap"
+                    app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/receiver_details" app:layout_constraintBottom_toBottomOf="parent">
+                    <com.google.android.material.button.MaterialButton android:id="@+id/receiver_stop"
+                        style="@style/Mirror.Action" android:layout_width="0dp"
+                        android:layout_height="52dp" android:maxLines="1" android:text="@string/receiver_stop"
+                        app:autoSizeTextType="uniform" app:autoSizeMinTextSize="12sp" app:autoSizeMaxTextSize="16sp"
+                        app:icon="@drawable/ic_power" app:iconGravity="textStart"
+                        android:nextFocusRight="@id/receiver_restart"
+                        android:nextFocusUp="@id/receiver_speed"
+                        app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toStartOf="@id/receiver_restart"
+                        app:layout_constraintTop_toTopOf="parent" app:layout_constraintWidth_max="188dp"
+                        app:layout_constraintHorizontal_chainStyle="packed" app:layout_constraintHorizontal_bias="0" />
+                    <com.google.android.material.button.MaterialButton android:id="@+id/receiver_restart"
+                        style="@style/Mirror.Icon" android:layout_width="52dp" android:layout_height="52dp"
+                        android:layout_marginStart="12dp" android:contentDescription="@string/receiver_restart"
+                        android:tooltipText="@string/receiver_restart" app:icon="@drawable/ic_restart"
+                        android:nextFocusLeft="@id/receiver_stop"
+                        android:nextFocusUp="@id/receiver_speed"
+                        app:layout_constraintStart_toEndOf="@id/receiver_stop" app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout android:id="@+id/receiver_footer" android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_marginHorizontal="36dp" android:layout_marginBottom="@dimen/receiver_footer_bottom"
+            android:orientation="vertical" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent">
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/mirror_border" />
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/receiver_footer_gap" android:orientation="horizontal" android:gravity="bottom">
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                    android:layout_marginEnd="16dp" android:orientation="vertical">
+                    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:text="@string/receiver_network_label" android:textColor="@color/mirror_muted"
+                        android:textSize="11sp" android:includeFontPadding="false" />
+                    <TextView android:id="@+id/receiver_network" android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp" android:text="@string/receiver_network_unavailable"
+                        android:textColor="@color/mirror_text" android:textSize="16sp" android:fontFamily="monospace"
+                        android:includeFontPadding="false" />
+                </LinearLayout>
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:text="@string/receiver_session_label" android:textColor="@color/mirror_muted"
+                        android:textSize="11sp" android:includeFontPadding="false" />
+                    <TextView android:id="@+id/receiver_peer" android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp" android:text="@string/receiver_no_session"
+                        android:textColor="@color/mirror_text" android:textSize="16sp" android:includeFontPadding="false" />
+                </LinearLayout>
+                <TextView android:id="@+id/receiver_version" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp" android:textColor="@color/mirror_muted" android:textSize="11sp"
+                    android:includeFontPadding="false" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout android:id="@+id/stream_controls" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_gravity="bottom" android:visibility="gone" android:background="@color/mirror_overlay"
+        android:paddingHorizontal="24dp" android:paddingVertical="16dp"
+        android:orientation="vertical">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:gravity="center_vertical">
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                android:layout_marginEnd="16dp" android:orientation="vertical">
+                <TextView android:id="@+id/stream_name" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/app_name"
+                    android:textColor="@color/mirror_muted" android:textSize="14sp" android:includeFontPadding="false"
+                    android:maxLines="1" android:ellipsize="end" />
+                <TextView android:id="@+id/stream_status" android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp" android:textColor="@color/mirror_text" android:textSize="18sp"
+                    android:maxLines="1" android:ellipsize="end" android:includeFontPadding="false" />
+            </LinearLayout>
+            <com.google.android.material.button.MaterialButton android:id="@+id/stream_stop" style="@style/Mirror.Icon"
+                android:layout_width="52dp" android:layout_height="52dp"
+                android:contentDescription="@string/receiver_stop" android:tooltipText="@string/receiver_stop"
+                app:icon="@drawable/ic_power" android:nextFocusRight="@id/stream_restart"
+                android:nextFocusDown="@id/stream_reconnect" />
+            <com.google.android.material.button.MaterialButton android:id="@+id/stream_restart" style="@style/Mirror.Icon"
+                android:layout_width="52dp" android:layout_height="52dp" android:layout_marginStart="12dp"
+                android:contentDescription="@string/receiver_restart" android:tooltipText="@string/receiver_restart"
+                app:icon="@drawable/ic_restart" android:nextFocusLeft="@id/stream_stop"
+                android:nextFocusRight="@id/stream_resume" android:nextFocusDown="@id/stream_reconnect" />
+            <com.google.android.material.button.MaterialButton android:id="@+id/stream_resume" style="@style/Mirror.Icon"
+                android:layout_width="52dp" android:layout_height="52dp" android:layout_marginStart="12dp"
+                android:contentDescription="@string/receiver_resume" android:tooltipText="@string/receiver_resume"
+                app:icon="@drawable/ic_close" android:nextFocusLeft="@id/stream_restart"
+                android:nextFocusDown="@id/stream_reconnect" />
+        </LinearLayout>
+        <HorizontalScrollView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="12dp" android:fillViewport="true" android:scrollbars="none">
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="52dp"
+                android:orientation="horizontal" android:gravity="center_vertical">
+                <com.google.android.material.button.MaterialButtonToggleGroup android:id="@+id/stream_picture_mode"
+                    android:layout_width="wrap_content" android:layout_height="52dp"
+                    app:singleSelection="true" app:selectionRequired="true" app:checkedButton="@id/stream_picture_fit">
+                    <com.google.android.material.button.MaterialButton android:id="@+id/stream_picture_fit"
+                        style="@style/Mirror.Icon" android:layout_width="72dp" android:layout_height="52dp"
+                        android:paddingHorizontal="8dp" android:text="@string/receiver_picture_fit"
+                        android:textColor="@color/mirror_secondary_content"
+                        android:maxLines="1" android:contentDescription="@string/receiver_picture_fit_description"
+                        android:tooltipText="@string/receiver_picture_fit_description"
+                        android:nextFocusRight="@id/stream_picture_fill" android:nextFocusUp="@id/stream_resume" />
+                    <com.google.android.material.button.MaterialButton android:id="@+id/stream_picture_fill"
+                        style="@style/Mirror.Icon" android:layout_width="72dp" android:layout_height="52dp"
+                        android:paddingHorizontal="8dp" android:text="@string/receiver_picture_fill"
+                        android:textColor="@color/mirror_secondary_content"
+                        android:maxLines="1" android:contentDescription="@string/receiver_picture_fill_description"
+                        android:tooltipText="@string/receiver_picture_fill_description"
+                        android:nextFocusLeft="@id/stream_picture_fit" android:nextFocusRight="@id/stream_speed"
+                        android:nextFocusUp="@id/stream_resume" />
+                </com.google.android.material.button.MaterialButtonToggleGroup>
+                <com.google.android.material.button.MaterialButton android:id="@+id/stream_speed"
+                    style="@style/Mirror.Icon" android:layout_width="112dp" android:layout_height="52dp"
+                    android:layout_marginStart="12dp" android:paddingHorizontal="8dp"
+                    android:text="@string/receiver_playback_balanced" android:maxLines="1"
+                    android:textColor="@color/mirror_secondary_content"
+                    android:contentDescription="@string/receiver_playback_mode" android:tooltipText="@string/receiver_playback_mode"
+                    app:autoSizeTextType="uniform" app:autoSizeMinTextSize="12sp" app:autoSizeMaxTextSize="16sp"
+                    android:nextFocusLeft="@id/stream_picture_fill" android:nextFocusRight="@id/stream_reconnect"
+                    android:nextFocusUp="@id/stream_resume" />
+                <Space android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" />
+                <com.google.android.material.button.MaterialButton android:id="@+id/stream_reconnect" style="@style/Mirror.Icon"
+                    android:layout_width="136dp" android:layout_height="52dp" android:layout_marginStart="12dp"
+                    android:text="@string/receiver_reconnect" android:maxLines="1" android:paddingHorizontal="8dp"
+                    android:textColor="@color/mirror_secondary_content"
+                    app:autoSizeTextType="uniform" app:autoSizeMinTextSize="12sp" app:autoSizeMaxTextSize="16sp"
+                    android:contentDescription="@string/receiver_reconnect" android:tooltipText="@string/receiver_reconnect"
+                    app:icon="@drawable/ic_restart" app:iconGravity="textStart" app:iconPadding="8dp" app:iconSize="20dp"
+                    android:nextFocusLeft="@id/stream_speed"
+                    android:nextFocusRight="@id/stream_picture_fit" android:nextFocusUp="@id/stream_resume" />
+            </LinearLayout>
+        </HorizontalScrollView>
+    </LinearLayout>
+</FrameLayout>

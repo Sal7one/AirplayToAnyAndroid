@@ -1,0 +1,9 @@
+<resources>
+    <dimen name="receiver_header_size">52dp</dimen>
+    <dimen name="receiver_header_top">24dp</dimen>
+    <dimen name="receiver_content_gap">16dp</dimen>
+    <dimen name="receiver_status_gap">12dp</dimen>
+    <dimen name="receiver_action_gap">24dp</dimen>
+    <dimen name="receiver_footer_bottom">28dp</dimen>
+    <dimen name="receiver_footer_gap">16dp</dimen>
+</resources>
