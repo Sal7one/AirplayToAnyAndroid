@@ -10,7 +10,9 @@
     <a href="LICENSE"><img src="https://img.shields.io/badge/License-GPL--3.0--only-white" alt="GPL-3.0-only license"></a>
   </p>
   <p>
-    <a href="#build-from-source"><strong>Build it</strong></a>
+    <a href="https://github.com/Sal7one/AirplayToAnyAndroid/releases/download/v1.1.0-alpha.7/FossMirrorTV-1.1.0-alpha.7-universal.apk"><strong>Download APK</strong></a>
+    &nbsp; &middot; &nbsp;
+    <a href="https://github.com/Sal7one/AirplayToAnyAndroid/releases/tag/v1.1.0-alpha.7">All APKs / release notes</a>
     &nbsp; &middot; &nbsp;
     <a href="docs/TESTING.md">Test evidence</a>
     &nbsp; &middot; &nbsp;
@@ -57,13 +59,13 @@ cd AirplayToAnyAndroid
 ./gradlew :app:assembleDebug :app:testDebugUnitTest
 ```
 
-The development APK is `app/build/outputs/apk/debug/app-debug.apk`. For a signed build, run `bash scripts/build-release.sh`; it creates or reuses your own signing key outside Git. Back that key up privately. Debug-signed builds cannot update a release-signed installation in place.
+The development APK is `app/build/outputs/apk/debug/app-debug.apk`. For signed universal and per-ABI APKs, commit your changes and run `bash scripts/build-release.sh`; it creates or reuses your own signing key outside Git and writes APKs, corresponding source, provenance, and checksums to `releases/v<version>/`. Back that key up privately. Debug-signed builds cannot update a release-signed installation in place.
 
-**Source-first publication:** no matching public APK has been published yet. Existing private alpha.6 binaries predate the crypto dependency update. Google Play readiness is still a separate release gate.
+**Public alpha.7:** [download the universal APK](https://github.com/Sal7one/AirplayToAnyAndroid/releases/download/v1.1.0-alpha.7/FossMirrorTV-1.1.0-alpha.7-universal.apk) if you are unsure which architecture to choose. [Smaller APKs, checksums, and corresponding source](https://github.com/Sal7one/AirplayToAnyAndroid/releases/tag/v1.1.0-alpha.7) are provided together. Google Play readiness is still a separate release gate.
 
 ---
 
-**Checked:** 227 host tests and debug / unsigned release builds passed on the exported source across four ABIs. Seven source-export tests passed. The 46 Android checks belong to the earlier alpha.6 build; the crypto update still needs Android runtime and TV/Mac checks. [Evidence](docs/TESTING.md) &middot; [Release gates](docs/PUBLIC_RELEASE.md).
+**Checked:** 227 host tests, five native host suites, and 11 packaging/export tests. Signed APKs are checked for signatures, non-debuggable manifests, ABI contents, and 16 KB ZIP alignment. Fresh emulator checks were blocked by host disk space; the earlier 46 Android checks are not alpha.7 results. [Evidence and limits](docs/RELEASE-1.1.0-alpha.7.md) &middot; [Release gates](docs/PUBLIC_RELEASE.md).
 
 **Built with:** Android MediaCodec / AudioTrack, JmDNS, Bouncy Castle, PlayFair, and Apple ALAC. Thanks to [UxPlay](https://github.com/FDH2/UxPlay), [PhairPlay](https://github.com/mazer666/PhairPlay), and the other [reference projects](docs/protocol/reference-integration.md). Component origins and licenses are in [NOTICE.md](NOTICE.md).
 

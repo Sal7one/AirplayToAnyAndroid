@@ -7,6 +7,10 @@ and GitHub noreply commit identity. The original private repository is preserved
 its history, tags, recovery data, signing keys, and release assets were not imported.
 **Publishing source is not approval to publish a stable APK or a Play Store app.**
 
+The maintainer subsequently authorized the [alpha.7 binary prerelease](RELEASE-1.1.0-alpha.7.md).
+Its signed APKs, matching source, and checksums are published separately from
+the original private assets. Runtime and stable-release limits remain explicit.
+
 The findings below describe the original checkout audit, not objects in this
 fresh repository. The temporary exporter manifest is deliberately not committed:
 it describes the pre-publication snapshot, not subsequent documentation edits.
@@ -31,7 +35,7 @@ it describes the pre-publication snapshot, not subsequent documentation edits.
 | Published APK contents | Six local APKs match the actual GitHub asset hashes. Five release variants are non-debuggable; the explicitly named alpha.6 debug variant is debuggable. ZIP entry inventories found no signing stores, keys, PDFs/captures or local-properties files, and no home-directory paths in entry contents. These are targeted checks, not proof of no embedded data. |
 | Images / media | Both README screenshots were inspected as synthetic emulator output. All 48 frames of the bundled H.264 clip show a generated test pattern. Runtime WebPs/screenshots have no EXIF/XMP/text metadata chunks; AI source PNGs retain C2PA provenance chunks, not stripped or fully decoded by this audit. |
 
-## Still Required Before A Binary Release
+## Ongoing Binary And Stable Release Gates
 
 1. Retain the approved GPL-3.0-only root `LICENSE`, component notices and
    corresponding-source distribution plan. Do not invent an "or later" grant
@@ -104,8 +108,9 @@ The history-free candidate was independently built with SDK/JDK environment
 variables and no signing credentials: 227 host tests pass, and debug plus
 unsigned-release APK assembly succeeds for all four ABIs without the seven
 legacy spike files. All seven exporter tests also pass from that snapshot,
-including actual Gitleaks rejection of the non-issued canary. No public APK
-has been produced or published from this preparation; old assets are unchanged.
+including actual Gitleaks rejection of the non-issued canary. At that preparation
+stage no public APK had been published; the later alpha.7 prerelease is recorded
+separately above. Original private assets are unchanged.
 
 The exporter has rejection/cleanup tests. For its additional real-scanner
 canary test, set `GITLEAKS_BIN` to the scanner executable before running unittest.

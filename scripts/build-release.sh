@@ -32,19 +32,6 @@ fi
 : "${FOSSMIRROR_STORE_PASSWORD:?Supply the private release keystore password}"
 
 cd "$ROOT"
-./gradlew :app:assembleRelease :app:testDebugUnitTest --console=plain "$@"
-APK="$ROOT/app/build/outputs/apk/release/app-release.apk"
-"$TOOLS/apksigner" verify --verbose "$APK"
-"$TOOLS/zipalign" -c -P 16 4 "$APK"
-
-VERSION="$("$TOOLS/aapt" dump badging "$APK" | sed -n "s/^package:.*versionName='\([^']*\)'.*/\1/p")"
-[[ -n "$VERSION" ]] || { printf 'Cannot read release version\n' >&2; exit 1; }
-mkdir -p "$ROOT/releases"
-ARTIFACT="FossMirrorTV-$VERSION.apk"
-cp "$APK" "$ROOT/releases/$ARTIFACT"
-(
-    cd "$ROOT/releases"
-    shasum -a 256 "$ARTIFACT" > "$ARTIFACT.sha256"
-)
-printf 'Signed APK: %s/releases/%s\n' "$ROOT" "$ARTIFACT"
+./gradlew :app:assembleRelease :app:testDebugUnitTest -PsplitApks=true --console=plain "$@"
+python3 scripts/package-release.py --build-tools "$TOOLS"
 printf 'Keep the release keystore and its password private and securely backed up.\n'

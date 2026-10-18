@@ -1,5 +1,11 @@
 # Verification
 
+## Public Alpha.7
+
+See [alpha.7 verification and limits](RELEASE-1.1.0-alpha.7.md) for the new signed
+public binaries. Host/native/package checks do not replace a fresh Android or
+Mac/TV run. The following older device records retain their original dates.
+
 Tests below separate pure logic, native compilation, and actual device/client
 behavior. The original rewrite checks were recorded on 2026-10-11; the current
 device investigation is recorded separately below.

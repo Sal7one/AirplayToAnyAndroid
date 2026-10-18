@@ -19,8 +19,8 @@ android {
         applicationId = "com.sal7one.tvtestproject"
         minSdk = 28
         targetSdk = 36
-        versionCode = 7
-        versionName = "1.1.0-alpha.6"
+        versionCode = 8
+        versionName = "1.1.0-alpha.7"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -57,6 +57,14 @@ android {
     }
     buildFeatures {
         viewBinding = false
+    }
+    splits {
+        abi {
+            isEnable = providers.gradleProperty("splitApks").orNull == "true"
+            reset()
+            include("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
+            isUniversalApk = true
+        }
     }
 }
 
